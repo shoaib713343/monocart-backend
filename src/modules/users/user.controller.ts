@@ -80,11 +80,18 @@ export async function loginUserHandler(
         const isPasswordCorrect = await bcrypt.compare(password, user[0].password);
 
         const secret = process.env.JWT_SECRET!;
-        const token = jwt.sign(
-             { id: user[0].id, email: user[0].email, fullName: user[0].fullName, role: user[0].role },
-              secret,
+         const token = jwt.sign(
+      { 
+        id: user[0].id, 
+        email: user[0].email, 
+        fullName: user[0].fullName,
+        role: user[0].role,
+        isEmailVerified: user[0].isEmailVerified, // Add this
+        isPhoneVerified: user[0].isPhoneVerified, // Add this
+      },
+      secret,
       { expiresIn: '1d' }
-        );
+    );
 
         return res.status(200).json({ accessToken: token});
 

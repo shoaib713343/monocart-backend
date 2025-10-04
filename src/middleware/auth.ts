@@ -2,12 +2,18 @@ import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 declare global {
-    namespace Express{
-        interface Request{
-            user?: { id: number; email: string; fullName: string, role: 'admin' | 'customer'
-        };
+  namespace Express {
+    interface Request {
+      user?: { 
+        id: number; 
+        email: string; 
+        fullName: string; 
+        role: 'admin' | 'customer';
+        isEmailVerified: boolean; 
+        isPhoneVerified: boolean; 
+      };
     }
-}
+  }
 }
 
 export const authMiddleware = (
