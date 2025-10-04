@@ -34,7 +34,8 @@ export const authMiddleware = (
         if(err) {
             return res.sendStatus(403);
         }
-         req.user = user as { id: number; email: string; fullName: string, role: 'admin' | 'customer'}
+         req.user = user as { id: number; email: string; fullName: string, role: 'admin' | 'customer'; isEmailVerified: boolean;
+        isPhoneVerified: boolean;}
          next();
     })
 }
